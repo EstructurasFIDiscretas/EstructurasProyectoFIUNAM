@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrucutas Discretas</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+        body { 
+            font-family: 'Space Mono', monospace; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        * { 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizelegibility;
+            letter-spacing: -0.25px;
+        }
+
+        header, nav, .content {
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        header {
+            padding: 16px;
+            background-color: rgb(0, 0, 0); 
+        }
+
+        header h1 {
+            color: white; 
+        }
+
+        nav {
+            background-color: black; 
+            padding: 16px;
+            position: relative; /* Agregamos esta línea */
+            z-index: 1; /* Asegura que el menú esté sobre otros elementos */
+        }
+
+        nav a {
+            margin-right: 16px;
+            color: white; 
+        }
+
+        .content {
+            padding: 16px;
+            flex-grow: 1;
+            overflow-y: auto; 
+        }
+
+        ol {
+            padding-left: 50px;
+        }
+
+        li { 
+            color: #4F4F4F; 
+            padding-left: 32px; 
+            margin-top: 48px;
+            position: relative;
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        li:before {
+            content: '';
+            display: block;
+            height: 42px;
+            width: 42px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            position: absolute;
+            top: -12px;
+            left: -46px;
+        }
+
+        strong { 
+            color: #292929; 
+        }
+
+        ol.alternating-colors { 
+            li:nth-child(odd):before { 
+                border-color: #0BAD02; 
+            }
+            li:nth-child(even):before { 
+                border-color: #2378D5; 
+            }
+        }
+
+        
+        .slide-down {
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+        }
+        
+        .libros {
+            display: flex;
+            justify-content: flex-end; /* Alinea el contenido a la derecha */
+        }
+        
+        .libro-info {
+            display: flex;
+        }
+        
+        .map-container {
+            display: flex;
+            flex-direction: column; /* Los mapas se colocan en una columna */
+        }
+        
+        .mapa {
+            margin-right: 20px; /* Espacio entre los mapas */
+        }
+        
+        .info {
+            width: 70%; /* Ancho del contenido de los libros */
+            text-align: center; /* Centra el contenido de información del libro */
+        }
+
+        .libro-Unam {
+            display: flex;
+        }
+        .infoUnam {
+            width: 70%; /* Ancho del contenido de los libros */
+            text-align: center; /* Centra el contenido de información del libro */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <canvas id="canvasOne" width="1200" height="820"></canvas>
+
+    <header style="text-align: center;">
+        <h1>Material de apoyo-Estructuras Discretas</h1>
+        <div id="userSection" style="display: flex; align-items: center; justify-content: center;">
+            <p id="userName" style="margin-right: 10px;"></p>
+            <button id="logoutBtn" class="login-btn" onclick="logout()" style="display: none; width: 110px;">Cerrar sesión</button>
+            <button id="loginBtn" class="login-btn" onclick="toggleLoginForm()" style="width: 110px;">Iniciar sesión</button>
+        </div>
+    </header>
+    
+    <nav>
+        <a href="#home" onclick="showSection('home')">Inicio</a>
+        <a href="#info" onclick="showSection('info')">Información</a>
+        <a href="#libros" onclick="showSection('libros')">Libros Ingenieria</a>
+        <a href="#libros_unam" onclick="showSection('libros_unam')">Libros UNAM</a>
+        <a href="#materiales" onclick="showSection('materiales')">Material Electrónico</a>
+    </nav>
+
+    <div id="home" style="text-align: center;">
+        <h2 style="color: white; font-size: 40px;">Inicio</h2>
+        <p class="content-text" style="color: white; font-size: 20px;">Material de apoyo-Estructuras Discretas.</p>
+        <p style="color: rgb(16, 68, 236); font-size: 20px;">¿Quieres interactuar con nuestro bot?<br><a href="https://t.me/Mathematicaldiscretbot" style="color: rgb(173, 235, 4);">Pulsa aquí</a></p>
+    </div>
+
+    <div id="info" class="content info" style="display:none;">
+        <h2>Información</h2>
+        <button class="edit-btn" onclick="checkAndLoadContentForEdit('info')">Editar</button>
+    </div> 
+    
+    <div id="libros" class="content libros" style="display:none;">
+        <h2>Libros Facultad de Ingenieria</h2>
+        <div class="libro-info">
+            <div class="map-container">
+                <div class="mapa">
+                    <h3>Ubicación Del anexo de ingenieria</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d677.1973545960943!2d-99.1828121059949!3d19.326010932924568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9499c084eb6b9838!2sBiblioteca+Enrique+Rivero+Borrel!5e0!3m2!1ses-419!2smx!4v1506109021222" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                </div>
+                <div class="mapa">
+                    <h3>Ubicación Del posgrado de ingenieria</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1162.823185828712!2d-99.18166592421939!3d19.32786927560008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x30a857877537184e!2sBIBLIOTECA+DR.+ENZO+LEVI!5e0!3m2!1ses-419!2smx!4v1506109048401" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                </div>
+            </div>
+            <div class="info">
+                <h3>Información del libro</h3>
+                <h2>(Autor, Fecha, Título, Editorial, Lugar, Temas Relacionados.)</h2>
+                <input type="text" id="searchInput" placeholder="Buscar por tema" oninput="searchBooks()">
+                <ol id="listaLibros" class="content-text alternating-colors"></ol>
+                <button class="edit-btn" onclick="checkAndLoadContentForEdit('libros')">Editar</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="libros_unam" class="content libros" style="display:none;">
+    <h2>Libros UNAM</h2>
+    <div class="libro-Unam">
+        <div class="map-container">
+            <div class="mapa">
+                <h3>Ubicación de la Facultad de Ciencias</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.0381487942695!2d-99.18122957022703!3d19.32415083357854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce000fdd96288f%3A0x1096af9b5b03d38d!2sFacultad+de+Ciencias+UNAM!5e0!3m2!1ses-419!2smx!4v1506106789228" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+            <div class="mapa">
+                <h3>Ubicación de la Facultad de Química</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2174.857588309033!2d-99.18238305349321!3d19.33285690372357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce00030af12503%3A0xeea91fc2a1d42bcf!2sBiblioteca%20de%20Estudios%20Profesionales%2C%20Facultad%20de%20Qu%C3%ADmica%2C%20UNAM!5e0!3m2!1ses-419!2smx!4v1708819195445!5m2!1ses-419!2smx" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+            <div class="mapa">
+                <h3>Ubicación de la Facultad de Economía</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1882.40860541622!2d-99.18573471121084!3d19.33373652643188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce000223225c11%3A0x76f00e577d9399cb!2sBiblioteca%20Enrique%20Gonz%C3%A1lez%20Aparicio!5e0!3m2!1ses-419!2smx!4v1708819420931!5m2!1ses-419!2smx" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+            <div class="mapa">
+                <h3>Ubicación del Instituto de Matemáticas</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d665.5648292228!2d-99.17901797235959!3d19.32566602847858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce001aa96dc053%3A0xe0f4a857e3de1b70!2sBiblioteca%20Mtro.%20Sotero%20Prieto!5e0!3m2!1ses-419!2smx!4v1708819358029!5m2!1ses-419!2smx" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+        </div>
+        <div class="infoUnam">
+            <h3>Información del libro</h3>
+            <h2>(Autor, Fecha, Titulo, Editorial, Lugar)</h2>
+            <input type="text" id="searchInputUnam" placeholder="Buscar por tema" oninput="searchBooksUnam(event)">
+            <ol id="listaLibrosUNAM" class="content-text alternating-colors"></ol>
+            <button class="edit-btn" onclick="checkAndLoadContentForEdit('libros_unam')">Editar</button>
+        </div>    
+    </div>
+</div>
+
+    
+    <div id="materiales" class="content materiales" style="display:none;">
+        <h2>Material Electrónico</h2>
+        <ol id="listaMateriales" class="content-text alternating-colors"></ol>
+        <button class="edit-btn" onclick="checkAndLoadContentForEdit('materiales')">Editar</button>
+    </div>
+    
+    
+    <section id="loginSection" class="content" style="display: none; text-align: center; background-color: rgba(0, 0, 0, 0.8); position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; padding-top: 100px;">
+        <form id="loginForm" style="display: inline-block;" onsubmit="login(event);">
+            <h2 style="color: white;">Iniciar Sesión administrador</h2>
+            <div class="inset">
+                <p>
+                    <label for="email" style="color: white;">usuario</label>
+                    <input type="text" name="email" id="email">
+                </p>
+                <p>
+                    <label for="password" style="color: white;">Contraseña</label>
+                    <input type="password" name="password" id="password">
+                </p>
+            </div>
+            <p class="p-container">
+                <input type="submit" name="go" id="go" value="Iniciar Sesión">
+            </p>
+        </form>
+        <a href="#home" onclick="showSection('home')" style="color: white; margin-top:20px; display: block;">Volver</a>
+    </section>
+    
+    <script src="FuncionScript.js"></script>
+    <script src="scrip.js"></script>
+
+</body>
+</html>

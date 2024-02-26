@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4; 
+    color: #333; 
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333; 
+    color: white; 
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+nav {
+    background-color: #444; 
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white; 
+}
+
+.content {
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #fff; 
+}
+
+h2 {
+    color: #333; 
+}
+
+.info {
+    background-color: #f9c2cc; 
+}
+
+.libros {
+    background-color: #aee8c8; 
+}
+
+.libros_unam{
+    background-color: #c49d1f; 
+}
+
+.materiales {
+    background-color: #aed2e8; 
+}
+
+.content-text {
+    color: #333; 
+}
+
+.edit-btn {
+    background-color: #333; 
+    color: white; 
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-btn {
+    background-color: #333; 
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.slide-animation {
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.slide-down {
+    max-height: 1000px; 
+    opacity: 1;
+}
+
+#loginForm {
+    background: #111; 
+    width: 300px;
+    margin: 30px auto;
+    border-radius: 0.4em;
+    border: 1px solid #191919;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 10px 5px rgba(0,0,0,0.2);
+}
+
+#loginForm:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 1px;
+    width: 100px;
+    left: 20%;
+    background: linear-gradient(left, #111, #444, #b6b6b8, #444, #111);
+    top: 0;
+}
+
+#loginForm:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 5px;
+    border-radius: 50%;
+    left: 34%;
+    top: -7px;
+    box-shadow: 0 0 6px 4px #fff;
+}
+
+#loginForm .inset {
+    padding: 20px; 
+    border-top: 1px solid #19191a;
+}
+
+#loginForm h1 {
+    font-size: 18px;
+    text-shadow: 0 1px 0 black;
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0,0,0,1);
+    position: relative;
+}
+
+#loginForm h1:after {
+    content: "";
+    display: block;
+    width: 250px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 50px;
+    pointer-events: none;
+    transform: rotate(70deg);
+    background: linear-gradient(50deg, rgba(255,255,255,0.15), rgba(0,0,0,0));
+}
+
+#loginForm label {
+    color: #666;
+    display: block;
+    padding-bottom: 9px;
+}
+
+#loginForm input[type=text],
+#loginForm input[type=password] {
+    width: 100%;
+    padding: 8px 5px;
+    background: linear-gradient(#1f2124, #27292c);
+    border: 1px solid #222;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+    border-radius: 0.3em;
+    margin-bottom: 20px;
+    color: white; 
+}
+
+#loginForm label[for=remember] {
+    color: white;
+    display: inline-block;
+    padding-bottom: 0;
+    padding-top: 5px;
+}
+
+#loginForm input[type=checkbox] {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#loginForm .p-container {
+    padding: 0 20px 20px 20px; 
+}
+
+#loginForm .p-container:after {
+    clear: both;
+    display: table;
+    content: "";
+}
+
+#loginForm .p-container span {
+    display: block;
+    float: left;
+    color: #0d93ff;
+    padding-top: 8px;
+}
+
+#loginForm input[type=submit] {
+    padding: 5px 20px;
+    border: 1px solid rgba(0,0,0,0.4);
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+    border-radius: 0.3em;
+    background: #0184ff;
+    color: white;
+    float: right;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+}
+
+#loginForm input[type=submit]:hover {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -10px 10px rgba(255,255,255,0.1);
+    background-color: #0167af; 
+}
+
+#loginForm input[type=text]:hover,
+#loginForm input[type=password]:hover,
+#loginForm label:hover ~ input[type=text],
+#loginForm label:hover ~ input[type=password] {
+    background: #27292c;
+}
+#home {
+    position: relative;
+    padding: 16px; 
+}
+
+#canvasOne {
+    /* position: absolute; */
+    top: 0;
+    left: 4870;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /
+}
+
+.home-content {
+    background-color: transparent; 
+    padding: 0px; 
+}
+
+#info, #libros,#libros_unam, #materiales {
+    position: absolute;
+    top: 225px; 
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    display: none;
+    z-index: 2;
+}
+
+@media only screen and (max-width: 600px) {
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: black;
+    }
+
+    body {
+        padding-top: 60px; 
+    }
+
+    .content {
+        padding-top: 160px; 
+    }
+
+    .info {
+        padding-top: 300px; 
+    }
+
+    #info,
+    #libros,
+    #libros_unam,
+    #materiales {
+        margin-top: 300px; 
+    }
+
+}
