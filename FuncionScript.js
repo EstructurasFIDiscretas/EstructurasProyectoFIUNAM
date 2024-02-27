@@ -41,12 +41,21 @@ function displayBooks(books, listId) {
 function displayBooksUnam(books, listId) {
     const listaLibros = document.getElementById(listId);
     listaLibros.innerHTML = '';
-    books.slice(0, 18).forEach(book => { // Mostrar solo los primeros 6 libros
-        const li = document.createElement('li');
-        li.textContent = `${book[0]} ${book[1]} ${book[2]} ${book[3]} ${book[4]} ${book[5]}`; // Mostrar solo los primeros 6 elementos del array
-        listaLibros.appendChild(li);
-    });
+    fetch('linksparte2.csv')
+        .then(response => response.text())
+        .then(linksData => {
+            const links = linksData.split('\n');
+            books.forEach((book, index) => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = links[index]; // Asignar el enlace correspondiente al libro
+                link.textContent = `${book[0]} ${book[1]} ${book[2]} ${book[3]} ${book[4]} ${book[5]} ${book[6]}`;
+                li.appendChild(link);
+                listaLibros.appendChild(li);
+            });
+        });
 }
+
 
 function searchBooks() {
     const searchInput = document.getElementById('searchInput');
